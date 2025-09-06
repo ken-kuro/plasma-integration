@@ -84,6 +84,12 @@ KFileTreeView::KFileTreeView(QWidget *parent)
     setItemDelegate(new KFileItemDelegate(this));
     setLayoutDirection(Qt::LeftToRight);
 
+    // In directory selection, inline renaming must be disabled to ensure
+    // double-click activates expand/collapse rather than editing.
+    setEditTriggers(QAbstractItemView::NoEditTriggers);
+    // Avoid implicit expand on double click; we control expansion via activated.
+    setExpandsOnDoubleClick(false);
+
     d->mSourceModel->dirLister()->openUrl(QUrl::fromLocalFile(QDir::root().absolutePath()), KDirLister::Keep);
 
     connect(this, &QAbstractItemView::activated, this, [this](const QModelIndex &index) {
