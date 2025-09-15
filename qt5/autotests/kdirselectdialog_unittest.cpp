@@ -5,6 +5,7 @@
 */
 
 #include "../src/platformtheme/kdirselectdialog_p.h"
+#include "../src/platformtheme/kfiletreeview_p.h"
 #include <QStandardPaths>
 #include <QTest>
 
@@ -38,12 +39,6 @@ private Q_SLOTS:
 
         QCOMPARE(dirDialog.rootUrl(), expectedUrl);
     }
-
-    // TODO(Bug 324397): Add interaction tests for folder picker behavior
-    // - Verify KFileTreeView disables inline rename (editTriggers == NoEditTriggers)
-    // - Verify expandsOnDoubleClick is false; expansion handled via activated
-    // - Simulate activation to ensure expand/collapse toggles and no editor opens
-    // - Confirm behavior is consistent regardless of SingleClick platform hint
 };
 
 QTEST_MAIN(KDirSelectDialog_UnitTest)
